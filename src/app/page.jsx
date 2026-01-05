@@ -35,6 +35,9 @@ export default function Home() {
       <DrinkList />
       <User brand="Tesla" model="Model3" year="2023" />
       <Friuts />
+      <Stock inStock={9} />
+      <Greeting name="Munkhjin" ord="Jinluur" wish="delhiigeer aylah" />
+      <Greeting name="Tenger-Erdene" ord="Uher" wish="bayjih" />
     </div>
   ); //number aa tanina aa
 }
@@ -139,6 +142,94 @@ const Friuts = () => {
   const allFriuts = [...friut, " cherry"];
   return allFriuts;
 };
+
+// ## 5. Modules (Import/Export)
+
+// Modules allow you to split your code into multiple files. You `export` code from one file and `import` it into another to keep your project organized.
+
+// ### Usage Example
+
+// ```javascript
+// // Button.js
+// export const Button = () => <button>Click Me</button>;
+
+// // App.js
+// import { Button } from "./Button";
+// ```
+
+// **Task:** Create a file `utils.js` that exports a constant `API_URL`. Import it into a component in `App.js` and display the URL in a `<p>` tag.
+
+// ---
+
+// import { Button } from "./components/button";
+// const Page = () => {
+//   return (
+//     <div className="text-gray-50">
+//       <Button />
+//     </div>
+//   );
+// };
+// export default Page;
+
+// import { API_URL } from "./components/utils";
+// const Page = () => {
+//   return (
+//     <div className="text-gray-50">
+//       <API_URL />
+//     </div>
+//   );
+// };
+// export default Page;
+
+// ## 6. Ternary Operator /// bogino bichiglel
+
+// The ternary operator is the cleanest way to write "if-else" logic inside JSX for conditional rendering.
+// **Syntax:** `condition ? expressionIfTrue : expressionIfFalse`
+
+// ### Usage Example
+
+// ```javascript
+// const Status = ({ isLoggedIn }) => (
+//   <div>{isLoggedIn ? <p>Welcome back!</p> : <p>Please log in.</p>}</div>
+// );
+// ```
+
+// **Task:** Create a component that receives a `stock` prop (a number). If `stock > 0`, display "In Stock" in green; otherwise, display "Out of Stock" in red using inline styles.
+
+// ---
+
+const Stock = ({ inStock }) => {
+  return (
+    <div style={{ color: inStock > 0 ? "green" : "red" }}>
+      {inStock > 0 ? <p>In Stock {inStock}</p> : <p>Out of Stock</p>}
+    </div>
+  );
+};
+
+// ## 7. Template Strings
+
+// Template strings (using backticks ```) allow you to embed variables and expressions directly into strings using `${}`.
+
+// import React from 'react';
+
+// const Greeting = ({ name, points }) => {
+//   // Using template strings to create a dynamic message
+//   const statusMessage = `Hello, ${name}! You have ${points} points.`;
+
+//   return (
+//     <div className="profile">
+//       <h1>{statusMessage}</h1>
+//       <p>{`Next level: ${points + 10} points needed.`}</p>
+//     </div>
+//   );
+// };
+
+const Greeting = ({ name, wish, ord }) => {
+  const Message = `Snu, Ene bol ${name}. Ter ${ord}-iin ord uchraas tuunii husel bol ${wish} ym.`;
+  return <div>{Message}</div>;
+};
+
+// export default Greeting;
 
 // const ColorList = () => {
 //   const colors = ["red", "blue", "black", "red"];
